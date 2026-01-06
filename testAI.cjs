@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 const AI_CONFIG = {
     GEMINI: {
-        API_KEY: 'AIzaSyCdxo8zwL1ivCtf4M5HYa8IFVOru3rY4Xs',
+        API_KEY: 'yourapi',
         ENDPOINT: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent'
     }
 };
