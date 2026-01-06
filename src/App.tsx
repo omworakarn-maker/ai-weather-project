@@ -348,8 +348,8 @@ const App: React.FC = () => {
 
       {/* Floating Chat Interface */}
       {isChatOpen && (
-        <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-md flex items-end md:items-center justify-center p-0 md:p-4 animate-in fade-in duration-300">
-          <div className="bg-slate-950/90 backdrop-blur-3xl w-full max-w-xl h-[90vh] md:h-[700px] rounded-t-[2.5rem] md:rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/10 text-white animate-in slide-in-from-bottom-20 duration-500">
+        <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-[6px] flex items-end md:items-center justify-center p-0 md:p-4 animate-in fade-in duration-300">
+          <div className="bg-white/20 backdrop-blur-2xl w-full max-w-xl h-[90vh] md:h-[700px] rounded-t-[2.5rem] md:rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/30 text-white animate-in slide-in-from-bottom-20 duration-500 glassmorphism-chat">
 
             {/* Chat Header */}
             <div className={`flex items-center justify-between p-5 border-b border-white/10 transition-colors duration-500 ${aiMode === 'github' ? 'bg-purple-600/10' : 'bg-blue-600/10'}`}>
@@ -397,16 +397,16 @@ const App: React.FC = () => {
               )}
               {chatMessages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
-                  <div className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                  <div className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}> 
                     {msg.role === 'model' && (
-                      <div className={`size-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-1 ${aiMode === 'github' ? 'bg-purple-500/20' : 'bg-blue-500/20'}`}>
-                        {aiMode === 'github' ? <BrainCircuit size={14} className="text-purple-400" /> : <Zap size={14} className="text-blue-400" />}
+                      <div className={`size-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-1 ${aiMode === 'github' ? 'bg-purple-400/30' : 'bg-blue-400/30'} shadow-md border border-white/20`}>
+                        {aiMode === 'github' ? <BrainCircuit size={14} className="text-purple-200" /> : <Zap size={14} className="text-blue-200" />}
                       </div>
                     )}
-                    <div className={`p-4 rounded-[1.5rem] text-sm md:text-base leading-relaxed ${msg.role === 'user'
-                      ? 'bg-gradient-to-tr from-purple-600 to-indigo-600 text-white rounded-tr-none shadow-lg'
-                      : 'bg-white/5 border border-white/10 text-white/90 rounded-tl-none'
-                      }`}>
+                    <div className={`p-4 rounded-[1.5rem] text-sm md:text-base leading-relaxed shadow-xl border ${msg.role === 'user'
+                      ? 'bg-white/30 text-purple-900 rounded-tr-none border-white/30 backdrop-blur-md'
+                      : 'bg-white/20 border-white/20 text-blue-900 rounded-tl-none backdrop-blur-md'
+                      }`} style={{backdropFilter:'blur(12px)'}}>
                       {msg.text}
                     </div>
                   </div>
@@ -443,7 +443,7 @@ const App: React.FC = () => {
                   <Send className="size-5" />
                 </button>
               </div>
-              <p className="text-[9px] text-center mt-4 opacity-20 uppercase tracking-[0.2em]">พิมพ์ /clear เพื่อล้างความจำ</p>
+              <p className="text-[9px] text-center mt-4 opacity-20 uppercase tracking-[0.2em]">test</p>
             </form>
           </div>
         </div>

@@ -1,6 +1,12 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { WeatherData, AIChatSession } from "../types";
 import { AI_CONFIG } from "./config";
+import { withTimeout, retry, ConcurrencyLimiter, CircuitBreaker } from "./aiHelpers";
+
+const DEFAULT_TIMEOUT = 8000; // ms
+const DEFAULT_RETRIES = 3;
+const limiter = new ConcurrencyLimiter(Math.max(2, Number(process.env.REACT_APP_AI_MAX_CONCURRENCY) || 4));
+const circuit = new CircuitBreaker(5, 15000); // 5 failures, 15s cooldown
 
 const genAI = new GoogleGenerativeAI(AI_CONFIG.GEMINI.API_KEY);
 
@@ -38,19 +44,28 @@ export class PhayuChatSession implements AIChatSession {
       }
 
       console.log("Sending message to Gemini:", msg);
-      const result = await this.chat.sendMessage(msg);
-      
-      if (!result || !result.response) {
-        throw new Error("Invalid response structure from API");
-      }
+      const fn = async () => {
+        const result = await this.chat.sendMessage(msg);
+        if (!result || !result.response) {
+          throw new Error("Invalid response structure from API");
+        }
+        const responseText = result.response.text();
+        if (!responseText || typeof responseText !== "string") {
+          throw new Error("Invalid response text from Gemini API");
+        }
+        return responseText;
+      };
 
-      const responseText = result.response.text();
+      if (circuit.isOpen()) {
+        console.warn('Gemini circuit breaker open, returning fallback');
+        return {
+          response: {
+            text: () => "ขออภัยค่ะ ระบบขัดข้องชั่วคราว ลองใหม่อีกครั้งนะคะ"
+          }
+        };
+      }
+      const responseText = await circuit.run(() => limiter.run(() => retry(() => withTimeout(fn(), DEFAULT_TIMEOUT, 'Gemini timeout'), DEFAULT_RETRIES)));
       console.log("Received response from Gemini:", responseText);
-
-      if (!responseText || typeof responseText !== "string") {
-        throw new Error("Invalid response text from Gemini API");
-      }
-
       return {
         response: {
           text: () => responseText
