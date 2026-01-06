@@ -2,7 +2,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // API Key ที่เราใช้อยู่จริง
-const API_KEY = "AIzaSyCdxo8zwL1ivCtf4M5HYa8IFVOru3rY4Xs";
+const API_KEY = "yourapi";
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
