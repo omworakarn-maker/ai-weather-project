@@ -1,11 +1,11 @@
 {
-  "name": "พยากรณ์อากาศอัจฉริยะ-(ai-weather-insights)",
+  "name": "ai-weather-insights",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npx vite build",
     "preview": "vite preview"
   },
   "dependencies": {
