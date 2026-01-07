@@ -7,7 +7,7 @@ import WeatherMap from './components/WeatherMap';
 import Navbar from './components/Navbar';
 import {
   Search, MapPin, Wind, Droplets, Sun, BrainCircuit, RefreshCw,
-  Loader2, Thermometer, MessageSquare, Send, TrendingUp, Crosshair, Cloud, ChevronDown, Zap
+  Loader2, Thermometer, MessageSquare, Send, TrendingUp, Crosshair, Cloud, ChevronDown, Zap, X
 } from 'lucide-react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer

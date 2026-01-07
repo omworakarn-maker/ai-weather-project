@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { CloudSun, Menu, X, Home, Satellite, BrainCircuit, Zap } from 'lucide-react';
+// import { CloudSun, Menu, X, Home, Satellite, BrainCircuit, Zap } from 'lucide-react';
 
 const Navbar: React.FC = () => {
     const location = useLocation();
@@ -74,7 +75,7 @@ const Navbar: React.FC = () => {
                         className="md:hidden p-2 text-white/80 hover:bg-white/10 rounded-xl transition-colors"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
-                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {mobileMenuOpen ? <Menu size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
             </div>
