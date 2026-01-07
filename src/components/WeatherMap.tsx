@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Plus, Minus, Maximize2, Minimize2, Move, X } from 'lucide-react';
+import { Plus, Minus, Maximize2, Minimize2, Move } from 'lucide-react';
 
 // Fix Icon Image issues
 import icon from 'leaflet/dist/images/marker-icon.png';

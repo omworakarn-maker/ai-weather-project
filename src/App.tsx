@@ -7,7 +7,7 @@ import WeatherMap from './components/WeatherMap';
 import Navbar from './components/Navbar';
 import {
   Search, MapPin, Wind, Droplets, Sun, BrainCircuit, RefreshCw,
-  Loader2, Thermometer, MessageSquare, Send, X, TrendingUp, Crosshair, Cloud, ChevronDown, Zap
+  Loader2, Thermometer, MessageSquare, Send, TrendingUp, Crosshair, Cloud, ChevronDown, Zap
 } from 'lucide-react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
@@ -272,7 +272,7 @@ const App: React.FC = () => {
 
             <button
               onClick={() => setIsChatOpen(true)}
-              className="mt-8 bg-purple-600 hover:bg-purple-500 text-white transition-all p-4 rounded-2xl flex items-center justify-center gap-3 font-bold shadow-lg shadow-purple-900/20 transform active:scale-95"
+              className="mt-8 bg-white/10 hover:bg-white/20 text-blue-700 transition-all p-4 rounded-2xl flex items-center justify-center gap-3 font-bold border border-white/30 backdrop-blur-xl transform active:scale-95"
             >
               <MessageSquare size={22} /> คุยกับ AI ฟ้าใส/พายุ
             </button>
@@ -288,14 +288,7 @@ const App: React.FC = () => {
                   </div>
                   <h3 className={`text-2xl font-bold ${isMapFull ? 'text-white' : 'text-blue-600'}`}>แผนที่ตำแหน่ง</h3>
                 </div>
-                {isMapFull && (
-                  <button
-                    onClick={() => setIsMapFull(false)}
-                    className="p-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all active:scale-95 border border-white/20 pointer-events-auto"
-                  >
-                    <X size={28} />
-                  </button>
-                )}
+                {/* ปุ่มปิดแผนที่เต็มจอถูกลบออกตามคำขอ */}
               </div>
               <div className={`overflow-hidden ${isMapFull ? 'absolute inset-0 z-0 rounded-none' : 'relative flex-1 min-h-0 rounded-[2.5rem] md:rounded-[3rem] shadow-inner'}`}>
                 <WeatherMap
